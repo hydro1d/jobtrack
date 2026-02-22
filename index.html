@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./src/output.css" rel="stylesheet">
+    <title>Job Application Tracker</title>
+</head>
+<body class="bg-gray-50">
+
+<header class="w-[80%] mx-auto py-6">
+    <h1 class="text-3xl font-bold mb-6">Job Application Tracker</h1>
+
+    <div class="grid grid-cols-3 gap-6">
+        <div class="bg-white shadow rounded-xl p-6">
+            <p class="font-semibold text-gray-500">Total</p>
+            <p id="total" class="text-4xl font-bold">0</p>
+        </div>
+
+        <div class="bg-white shadow rounded-xl p-6">
+            <p class="font-semibold text-gray-500">Interview</p>
+            <p id="thrivingCount" class="text-4xl font-bold text-green-600">0</p>
+        </div>
+
+        <div class="bg-white shadow rounded-xl p-6">
+            <p class="font-semibold text-gray-500">Rejected</p>
+            <p id="strugglingCount" class="text-4xl font-bold text-red-600">0</p>
+        </div>
+    </div>
+</header>
+
+<hr class="my-6">
+
+<main class="w-[80%] mx-auto pb-10">
+
+    <!-- Filter Buttons -->
+    <div class="mb-6 space-x-3">
+        <button onclick="toggleStyle('all-filter-btn')" 
+            class="filter-btn bg-blue-600 text-white px-5 py-2 rounded-md"
+            id="all-filter-btn">All</button>
+
+        <button onclick="toggleStyle('thriving-filter-btn')" 
+            class="filter-btn bg-gray-200 text-black px-5 py-2 rounded-md"
+            id="thriving-filter-btn">Interview</button>
+
+        <button onclick="toggleStyle('struggling-filter-btn')" 
+            class="filter-btn bg-gray-200 text-black px-5 py-2 rounded-md"
+            id="struggling-filter-btn">Rejected</button>
+    </div>
+
+    <!-- Filtered Section -->
+    <section id="filtered-section" class="hidden space-y-6"></section>
+
+    <!-- All Cards -->
+    <section id="allCards" class="space-y-6">
+
+        <!-- CARD 1-->
+        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition">
+            <div class="space-y-4">
+                <div>
+                    <p class="plantName text-2xl font-semibold">Frontend Developer</p>
+                    <p class="latinName text-gray-500">Company A</p>
+                </div>
+
+                <div class="flex gap-2">
+                    <p class="light bg-gray-100 px-4 py-1 rounded">Remote</p>
+                    <p class="water bg-gray-100 px-4 py-1 rounded">Full-Time</p>
+                </div>
+
+                <p class="status text-gray-500">Not Applied</p>
+                <p class="notes text-gray-400">Applied via LinkedIn</p>
+
+                <div class="flex gap-4">
+                    <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Interview</button>
+                    <button class="struggling-btn bg-red-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Rejected</button>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
+            </div>
+        </div>
+
+        
+        <!-- CARD 2 -->
+        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition">
+            <div class="space-y-4">
+                <div>
+                    <p class="plantName text-2xl font-semibold">Frontend Developer</p>
+                    <p class="latinName text-gray-500">Company A</p>
+                </div>
+
+                <div class="flex gap-2">
+                    <p class="light bg-gray-100 px-4 py-1 rounded">Remote</p>
+                    <p class="water bg-gray-100 px-4 py-1 rounded">Full-Time</p>
+                </div>
+
+                <p class="status text-gray-500">Not Applied</p>
+                <p class="notes text-gray-400">Applied via LinkedIn</p>
+
+                <div class="flex gap-4">
+                    <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Interview</button>
+                    <button class="struggling-btn bg-red-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Rejected</button>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
+            </div>
+        </div>
+
+        
+        <!-- CARD 3 -->
+        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition">
+            <div class="space-y-4">
+                <div>
+                    <p class="plantName text-2xl font-semibold">Frontend Developer</p>
+                    <p class="latinName text-gray-500">Company A</p>
+                </div>
+
+                <div class="flex gap-2">
+                    <p class="light bg-gray-100 px-4 py-1 rounded">Remote</p>
+                    <p class="water bg-gray-100 px-4 py-1 rounded">Full-Time</p>
+                </div>
+
+                <p class="status text-gray-500">Not Applied</p>
+                <p class="notes text-gray-400">Applied via LinkedIn</p>
+
+                <div class="flex gap-4">
+                    <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Interview</button>
+                    <button class="struggling-btn bg-red-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Rejected</button>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
