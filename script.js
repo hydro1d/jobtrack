@@ -1,6 +1,6 @@
 let thrivingList = [];
 let strugglingList = [];
-let currentStatus = "all";
+let currentStatus = "all-filter-btn";
 
 const total = document.getElementById("total");
 const thrivingCount = document.getElementById("thrivingCount");
@@ -9,11 +9,26 @@ const strugglingCount = document.getElementById("strugglingCount");
 const allCardSection = document.getElementById("allCards");
 const filterSection = document.getElementById("filtered-section");
 const mainContainer = document.querySelector("main");
+const filterCount = document.getElementById("filterCount");
 
 function calculateCount() {
-    total.innerText = document.querySelectorAll("#allCards .card").length;
+
+    const totalCards = document.querySelectorAll("#allCards .card").length;
+
+    total.innerText = totalCards;
     thrivingCount.innerText = thrivingList.length;
     strugglingCount.innerText = strugglingList.length;
+
+    // 🔥 RIGHT SIDE DYNAMIC COUNT
+    if (currentStatus === "all-filter-btn") {
+        filterCount.innerText = `${totalCards} jobs`;
+    } 
+    else if (currentStatus === "thriving-filter-btn") {
+        filterCount.innerText = `${thrivingList.length} jobs`;
+    } 
+    else if (currentStatus === "struggling-filter-btn") {
+        filterCount.innerText = `${strugglingList.length} jobs`;
+    }
 }
 
 calculateCount();
@@ -48,6 +63,7 @@ function toggleStyle(id) {
         filterSection.classList.remove("hidden");
         renderList(strugglingList);
     }
+    calculateCount();
 }
 
 
@@ -129,32 +145,28 @@ function renderList(list) {
     filterSection.innerHTML = "";
 
     if (list.length === 0) {
-
         const emptyDiv = document.createElement("div");
         emptyDiv.className = "bg-white shadow rounded-xl p-10 text-center";
 
         emptyDiv.innerHTML = `
-            
-            <div class="flex justify-center">
-             <img  src="images/assignment_7959593 1.png" alt="">
-            </div>
-             <p class="text-2xl font-semibold text-gray-500">
-                No jobs available
+            <p class="text-2xl font-semibold text-gray-500">
+                No Applications Found
             </p>
             <p class="text-gray-400 mt-2">
-                Check back soon for new job opportunities.
+                You don’t have any ${currentStatus === "thriving-filter-btn" ? "Interview" : "Rejected"} applications yet.
             </p>
         `;
 
         filterSection.appendChild(emptyDiv);
-        return; //important
+        return;
     }
-
 
     list.forEach(item => {
 
         const div = document.createElement("div");
+
         div.className = "card flex justify-between bg-white shadow p-8 rounded-xl";
+        div.setAttribute("data-id", item.id); // ID add
 
         div.innerHTML = `
             <div class="space-y-4">
@@ -168,10 +180,11 @@ function renderList(list) {
                     <p class="water bg-gray-100 px-4 py-1 rounded">${item.water}</p>
                 </div>
 
-                <p class="status ${item.status === "Interview"
-                ? "text-green-600 font-semibold"
-                : "text-red-600 font-semibold"
-            }">
+                <p class="status ${
+                    item.status === "Interview"
+                        ? "text-green-600 font-semibold"
+                        : "text-red-600 font-semibold"
+                }">
                     ${item.status}
                 </p>
 
@@ -188,7 +201,7 @@ function renderList(list) {
             </div>
 
             <div>
-                <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md">
+                <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">
                     Delete
                 </button>
             </div>

@@ -34,20 +34,35 @@
 <main class="w-[80%] mx-auto pb-10">
 
     <!-- Filter Buttons -->
-    <div class="mb-6 space-x-3">
-        <p class="font-bold mb-3">Available jobs</p>
+   <div class="mb-6 flex justify-between items-center">
+
+    <!-- LEFT SIDE BUTTONS -->
+    <div class="space-x-3">
         <button onclick="toggleStyle('all-filter-btn')" 
             class="filter-btn bg-blue-600 text-white px-5 py-2 rounded-md"
-            id="all-filter-btn">All</button>
+            id="all-filter-btn">
+            All
+        </button>
 
         <button onclick="toggleStyle('thriving-filter-btn')" 
             class="filter-btn bg-gray-200 text-black px-5 py-2 rounded-md"
-            id="thriving-filter-btn">Interview</button>
+            id="thriving-filter-btn">
+            Interview
+        </button>
 
         <button onclick="toggleStyle('struggling-filter-btn')" 
             class="filter-btn bg-gray-200 text-black px-5 py-2 rounded-md"
-            id="struggling-filter-btn">Rejected</button>
+            id="struggling-filter-btn">
+            Rejected
+        </button>
     </div>
+
+    <!-- RIGHT SIDE COUNT -->
+    <p id="filterCount" class="text-gray-500 font-medium">
+        0 jobs
+    </p>
+
+</div>
 
     <!-- Filtered Section -->
     <section id="filtered-section" class="hidden space-y-6"></section>
