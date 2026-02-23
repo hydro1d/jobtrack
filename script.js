@@ -58,6 +58,7 @@ mainContainer.addEventListener("click", function (event) {
     const card = event.target.closest(".card");
     if (!card) return;
 
+    const id = card.dataset.id; // 🔥 UNIQUE ID
     const plantName = card.querySelector(".plantName").innerText;
     const light = card.querySelector(".light").innerText;
     const water = card.querySelector(".water").innerText;
@@ -70,19 +71,17 @@ mainContainer.addEventListener("click", function (event) {
         statusElement.innerText = "Interview";
         statusElement.className = "status text-green-600 font-semibold";
 
-        const cardInfo = { plantName, light, water, notes, status: "Interview" };
+        const cardInfo = { id, plantName, light, water, notes, status: "Interview" };
 
-        if (!thrivingList.find(item => item.plantName === plantName)) {
+        if (!thrivingList.find(item => item.id === id)) {
             thrivingList.push(cardInfo);
         }
 
-        strugglingList = strugglingList.filter(item => item.plantName !== plantName);
-
-        if (currentStatus === "struggling-filter-btn") {
-            renderList(strugglingList);
-        }
+        strugglingList = strugglingList.filter(item => item.id !== id);
 
         calculateCount();
+        if (currentStatus === "thriving-filter-btn") renderList(thrivingList);
+        if (currentStatus === "struggling-filter-btn") renderList(strugglingList);
     }
 
     // REJECTED
@@ -91,39 +90,35 @@ mainContainer.addEventListener("click", function (event) {
         statusElement.innerText = "Rejected";
         statusElement.className = "status text-red-600 font-semibold";
 
-        const cardInfo = { plantName, light, water, notes, status: "Rejected" };
+        const cardInfo = { id, plantName, light, water, notes, status: "Rejected" };
 
-        if (!strugglingList.find(item => item.plantName === plantName)) {
+        if (!strugglingList.find(item => item.id === id)) {
             strugglingList.push(cardInfo);
         }
 
-        thrivingList = thrivingList.filter(item => item.plantName !== plantName);
-
-        if (currentStatus === "thriving-filter-btn") {
-            renderList(thrivingList);
-        }
+        thrivingList = thrivingList.filter(item => item.id !== id);
 
         calculateCount();
+        if (currentStatus === "thriving-filter-btn") renderList(thrivingList);
+        if (currentStatus === "struggling-filter-btn") renderList(strugglingList);
     }
 
-    // DELETE
+    //delete
     if (event.target.classList.contains("btn-delete")) {
+
+        const id = card.dataset.id;
 
         card.remove();
 
-        thrivingList = thrivingList.filter(item => item.plantName !== plantName);
-        strugglingList = strugglingList.filter(item => item.plantName !== plantName);
+        thrivingList = thrivingList.filter(item => item.id !== id);
+        strugglingList = strugglingList.filter(item => item.id !== id);
 
         calculateCount();
 
-        if (currentStatus === "thriving-filter-btn") {
-            renderList(thrivingList);
-        }
-
-        if (currentStatus === "struggling-filter-btn") {
-            renderList(strugglingList);
-        }
+        if (currentStatus === "thriving-filter-btn") renderList(thrivingList);
+        if (currentStatus === "struggling-filter-btn") renderList(strugglingList);
     }
+
 });
 
 
@@ -173,11 +168,10 @@ function renderList(list) {
                     <p class="water bg-gray-100 px-4 py-1 rounded">${item.water}</p>
                 </div>
 
-                <p class="status ${
-                    item.status === "Interview"
-                        ? "text-green-600 font-semibold"
-                        : "text-red-600 font-semibold"
-                }">
+                <p class="status ${item.status === "Interview"
+                ? "text-green-600 font-semibold"
+                : "text-red-600 font-semibold"
+            }">
                     ${item.status}
                 </p>
 
