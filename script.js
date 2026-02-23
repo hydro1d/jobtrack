@@ -1,33 +1,33 @@
-let thrivingList = [];
-let strugglingList = [];
-let currentStatus = "all-filter-btn";
+let interviewList = [];
+let rejectedList = [];
+let activeFilterId = "all-filter-btn";
 
-const total = document.getElementById("total");
-const thrivingCount = document.getElementById("thrivingCount");
-const strugglingCount = document.getElementById("strugglingCount");
+const totalCountEl = document.getElementById("total");
+const interviewCountEl = document.getElementById("thrivingCount");
+const rejectedCountEl = document.getElementById("strugglingCount");
 
-const allCardSection = document.getElementById("allCards");
-const filterSection = document.getElementById("filtered-section");
-const mainContainer = document.querySelector("main");
-const filterCount = document.getElementById("filterCount");
+const allCardsSection = document.getElementById("allCards");
+const filteredSectionEl = document.getElementById("filtered-section");
+const mainEl = document.querySelector("main");
+const filterCountEl = document.getElementById("filterCount");
 
 function calculateCount() {
 
     const totalCards = document.querySelectorAll("#allCards .card").length;
 
-    total.innerText = totalCards;
-    thrivingCount.innerText = thrivingList.length;
-    strugglingCount.innerText = strugglingList.length;
+    totalCountEl.innerText = totalCards;
+    interviewCountEl.innerText = interviewList.length;
+    rejectedCountEl.innerText = rejectedList.length;
 
     // 🔥 RIGHT SIDE DYNAMIC COUNT
-    if (currentStatus === "all-filter-btn") {
-        filterCount.innerText = `${totalCards} jobs`;
+    if (activeFilterId === "all-filter-btn") {
+        filterCountEl.innerText = `${totalCards} jobs`;
     }
-    else if (currentStatus === "thriving-filter-btn") {
-        filterCount.innerText = `${thrivingList.length} jobs`;
+    else if (activeFilterId === "thriving-filter-btn") {
+        filterCountEl.innerText = `${interviewList.length} jobs`;
     }
-    else if (currentStatus === "struggling-filter-btn") {
-        filterCount.innerText = `${strugglingList.length} jobs`;
+    else if (activeFilterId === "struggling-filter-btn") {
+        filterCountEl.innerText = `${rejectedList.length} jobs`;
     }
 }
 
@@ -47,21 +47,21 @@ function toggleStyle(id) {
     selected.classList.remove("bg-gray-200", "text-black");
     selected.classList.add("bg-blue-600", "text-white");
 
-    currentStatus = id;
+    activeFilterId = id;
 
     if (id === "all-filter-btn") {
-        allCardSection.classList.remove("hidden");
-        filterSection.classList.add("hidden");
+        allCardsSection.classList.remove("hidden");
+        filteredSectionEl.classList.add("hidden");
     }
     else if (id === "thriving-filter-btn") {
-        allCardSection.classList.add("hidden");
-        filterSection.classList.remove("hidden");
-        renderList(thrivingList);
+        allCardsSection.classList.add("hidden");
+        filteredSectionEl.classList.remove("hidden");
+        renderList(interviewList);
     }
     else {
-        allCardSection.classList.add("hidden");
-        filterSection.classList.remove("hidden");
-        renderList(strugglingList);
+        allCardsSection.classList.add("hidden");
+        filteredSectionEl.classList.remove("hidden");
+        renderList(rejectedList);
     }
     calculateCount();
 }
@@ -69,18 +69,18 @@ function toggleStyle(id) {
 
 // EVENT DELEGATION 
 
-mainContainer.addEventListener("click", function (event) {
+mainEl.addEventListener("click", function (event) {
 
     const card = event.target.closest(".card");
     if (!card) return;
 
-    const id = card.dataset.id; // 🔥 UNIQUE ID
-    const plantName = card.querySelector(".plantName").innerText;
-    const latinName = card.querySelector(".latinName").innerText;
-    const light = card.querySelector(".light").innerText;
-    const water = card.querySelector(".water").innerText;
-    const notes = card.querySelector(".notes").innerText;
-    const hill = card.querySelector(".hill").innerText;
+    const id = card.dataset.id; // UNIQUE ID
+    const companyName = card.querySelector(".companyName").innerText;
+    const jobTitle = card.querySelector(".jobTitle").innerText;
+    const location = card.querySelector(".location").innerText;
+    const employmentType = card.querySelector(".employmentType").innerText;
+    const description = card.querySelector(".description").innerText;
+    const salaryRange = card.querySelector(".salaryRange").innerText;
     const statusElement = card.querySelector(".status");
 
     // INTERVIEW
@@ -89,17 +89,17 @@ mainContainer.addEventListener("click", function (event) {
         statusElement.innerText = "Interview";
         statusElement.className = "status text-green-600 font-semibold";
 
-        const cardInfo = { id, plantName, latinName, light, water, hill, notes, status: "Interview" };
+        const cardInfo = { id, companyName, jobTitle, location, employmentType, salaryRange, description, status: "Interview" };
 
-        if (!thrivingList.find(item => item.id === id)) {
-            thrivingList.push(cardInfo);
+        if (!interviewList.find(item => item.id === id)) {
+            interviewList.push(cardInfo);
         }
 
-        strugglingList = strugglingList.filter(item => item.id !== id);
+        rejectedList = rejectedList.filter(item => item.id !== id);
 
         calculateCount();
-        if (currentStatus === "thriving-filter-btn") renderList(thrivingList);
-        if (currentStatus === "struggling-filter-btn") renderList(strugglingList);
+        if (activeFilterId === "thriving-filter-btn") renderList(interviewList);
+        if (activeFilterId === "struggling-filter-btn") renderList(rejectedList);
     }
 
     // REJECTED
@@ -108,17 +108,17 @@ mainContainer.addEventListener("click", function (event) {
         statusElement.innerText = "Rejected";
         statusElement.className = "status text-red-600 font-semibold";
 
-        const cardInfo = { id, plantName, latinName, light, water, hill, notes, status: "Rejected" };
+        const cardInfo = { id, companyName, jobTitle, location, employmentType, salaryRange, description, status: "Rejected" };
 
-        if (!strugglingList.find(item => item.id === id)) {
-            strugglingList.push(cardInfo);
+        if (!rejectedList.find(item => item.id === id)) {
+            rejectedList.push(cardInfo);
         }
 
-        thrivingList = thrivingList.filter(item => item.id !== id);
+        interviewList = interviewList.filter(item => item.id !== id);
 
         calculateCount();
-        if (currentStatus === "thriving-filter-btn") renderList(thrivingList);
-        if (currentStatus === "struggling-filter-btn") renderList(strugglingList);
+        if (activeFilterId === "thriving-filter-btn") renderList(interviewList);
+        if (activeFilterId === "struggling-filter-btn") renderList(rejectedList);
     }
 
     //delete
@@ -128,13 +128,13 @@ mainContainer.addEventListener("click", function (event) {
 
         card.remove();
 
-        thrivingList = thrivingList.filter(item => item.id !== id);
-        strugglingList = strugglingList.filter(item => item.id !== id);
+        interviewList = interviewList.filter(item => item.id !== id);
+        rejectedList = rejectedList.filter(item => item.id !== id);
 
         calculateCount();
 
-        if (currentStatus === "thriving-filter-btn") renderList(thrivingList);
-        if (currentStatus === "struggling-filter-btn") renderList(strugglingList);
+        if (activeFilterId === "thriving-filter-btn") renderList(interviewList);
+        if (activeFilterId === "struggling-filter-btn") renderList(rejectedList);
     }
 
 });
@@ -144,7 +144,7 @@ mainContainer.addEventListener("click", function (event) {
 
 function renderList(list) {
 
-    filterSection.innerHTML = "";
+    filteredSectionEl.innerHTML = "";
 
     if (list.length === 0) {
         const emptyDiv = document.createElement("div");
@@ -158,11 +158,11 @@ function renderList(list) {
                 No Applications Found
             </p>
             <p class="text-gray-400 mt-2">
-                You don’t have any ${currentStatus === "thriving-filter-btn" ? "Interview" : "Rejected"} applications yet.
+                You don’t have any ${activeFilterId === "thriving-filter-btn" ? "Interview" : "Rejected"} applications yet.
             </p>
         `;
 
-        filterSection.appendChild(emptyDiv);
+        filteredSectionEl.appendChild(emptyDiv);
         return;
     }
 
@@ -170,20 +170,20 @@ function renderList(list) {
 
         const div = document.createElement("div");
 
-        div.className = "card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition";
+        div.className = "card flex flex-col md:flex-row justify-between bg-white shadow p-6 md:p-8 rounded-xl hover:shadow-lg transition";
         div.setAttribute("data-id", item.id); // ID add
 
         div.innerHTML = `
             <div class="space-y-4">
                 <div>
-                    <p class="plantName text-2xl font-semibold">${item.plantName}</p>
-                    <p class="latinName text-gray-500">${item.latinName}</p>
+                    <p class="companyName text-2xl font-semibold">${item.companyName}</p>
+                    <p class="jobTitle text-gray-500">${item.jobTitle}</p>
                 </div>
 
                 <div class="flex gap-2">
-                    <p class="light bg-gray-100 px-4 py-1 rounded">${item.light}</p>
-                    <p class="water bg-gray-100 px-4 py-1 rounded">${item.water}</p>
-                    <p class="hill bg-gray-100 px-4 py-1 rounded">${item.hill}</p>
+                    <p class="location bg-gray-100 px-4 py-1 rounded">${item.location}</p>
+                    <p class="employmentType bg-gray-100 px-4 py-1 rounded">${item.employmentType}</p>
+                    <p class="salaryRange bg-gray-100 px-4 py-1 rounded">${item.salaryRange}</p>
                 </div>
 
                 <p class="status ${item.status === "Interview"
@@ -193,7 +193,7 @@ function renderList(list) {
                     ${item.status}
                 </p>
 
-                <p class="notes text-gray-400">${item.notes}</p>
+                <p class="description text-gray-400">${item.description}</p>
 
                 <div class="flex gap-4">
                     <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">
@@ -203,13 +203,13 @@ function renderList(list) {
                         Rejected
                     </button>
             </div>
-            <div>
+            <div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">
                 Delete
                 </button>
             </div>
         `;
 
-        filterSection.appendChild(div);
+        filteredSectionEl.appendChild(div);
     });
 }
