@@ -13,10 +13,10 @@
 </style>
 <body class="bg-gray-50">
 
-<header class="w-[80%] mx-auto py-6">
+<header class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
     <h1 class="text-3xl font-bold mb-6">Job Application Tracker</h1>
 
-    <div class="grid grid-cols-3 gap-6">
+    <div class="grid grid-cols-3 sm:grid-cols-3 gap-6">
         <div class="bg-white shadow rounded-xl p-6">
             <p class="font-semibold text-gray-500">Total</p>
             <p id="total" class="text-4xl font-bold">0</p>
@@ -36,13 +36,13 @@
 
 
 
-<main class="w-[80%] mx-auto pb-10">
+<main class="max-w-6xl mx-auto px-4 sm:px-6 pb-10">
 
     <!-- Filter Buttons -->
-   <div class="mb-6 flex justify-between items-center">
+    <div class="mb-6 flex flex-col sm:flex-row justify-between items-center gap-3">
 
     <!-- LEFT SIDE BUTTONS -->
-    <div class="space-x-3">
+    <div class="space-x-3 flex flex-wrap">
         <button onclick="toggleStyle('all-filter-btn')" 
             class="filter-btn bg-blue-600 text-white px-5 py-2 rounded-md cursor-pointer "
             id="all-filter-btn">
@@ -73,10 +73,10 @@
     <section id="filtered-section" class="hidden space-y-6"></section>
 
     <!-- All Cards -->
-    <section id="allCards" class="space-y-6">
+    <section id="allCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <!-- CARD 1-->
-        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition" data-id = "1">
+        <div class="card flex flex-col md:flex-row justify-between bg-white shadow p-6 md:p-8 rounded-xl hover:shadow-lg transition" data-id = "1">
             <div class="space-y-4">
                 <div>
                     <p class="plantName text-2xl font-semibold">Mobile First Corp</p>
@@ -98,14 +98,14 @@
                 </div>
             </div>
 
-            <div>
+            <div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
             </div>
         </div>
 
         
         <!-- CARD 2 -->
-        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition" data-id = "2">
+        <div class="card flex flex-col md:flex-row justify-between bg-white shadow p-6 md:p-8 rounded-xl hover:shadow-lg transition" data-id = "2">
             <div class="space-y-4">
                 <div>
                     <p class="plantName text-2xl font-semibold">WebFlow Agency</p>
@@ -127,14 +127,14 @@
                 </div>
             </div>
 
-            <div>
+            <div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
             </div>
         </div>
 
         
         <!-- CARD 3 -->
-        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition" data-id = "3">
+        <div class="card flex flex-col md:flex-row justify-between bg-white shadow p-6 md:p-8 rounded-xl hover:shadow-lg transition" data-id = "3">
             <div class="space-y-4">
                 <div>
                     <p class="plantName text-2xl font-semibold">DataViz Solutions</p>
@@ -158,26 +158,27 @@
                 </div>
             </div>
 
-            <div>
+            <div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
             </div>
         </div>
 
                 <!-- CARD 4 -->
-        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition" data-id = "4">
+        <div class="card flex flex-col md:flex-row justify-between bg-white shadow p-6 md:p-8 rounded-xl hover:shadow-lg transition" data-id = "4">
             <div class="space-y-4">
                 <div>
-                    <p class="plantName text-2xl font-semibold">Frontend Developer</p>
-                    <p class="latinName text-gray-500">Company A</p>
+                    <p class="plantName text-2xl font-semibold">CloudFirst Inc</p>
+                    <p class="latinName text-gray-500">Backend Developer</p>
                 </div>
 
                 <div class="flex gap-2">
-                    <p class="light bg-gray-100 px-4 py-1 rounded">Remote</p>
+                    <p class="light bg-gray-100 px-4 py-1 rounded">Seattle, WA</p>
                     <p class="water bg-gray-100 px-4 py-1 rounded">Full-Time</p>
+                    <p class="hill bg-gray-100 px-4 py-1 rounded"> $125,000 - $165,000</p>
                 </div>
 
                 <p class="status text-gray-500">Not Applied</p>
-                <p class="notes text-gray-400">Applied via LinkedIn</p>
+                <p class="notes text-gray-400">Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.</p>
 
                 <div class="flex gap-4">
                     <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Interview</button>
@@ -185,26 +186,27 @@
                 </div>
             </div>
 
-            <div>
+            <div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
             </div>
         </div>
 
                 <!-- CARD 5 -->
-        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition" data-id = "5">
+        <div class="card flex flex-col md:flex-row justify-between bg-white shadow p-6 md:p-8 rounded-xl hover:shadow-lg transition" data-id = "5">
             <div class="space-y-4">
                 <div>
-                    <p class="plantName text-2xl font-semibold">Frontend Developer</p>
-                    <p class="latinName text-gray-500">Company A</p>
+                    <p class="plantName text-2xl font-semibold">Innovation Labs</p>
+                    <p class="latinName text-gray-500">UI/UX Engineer</p>
                 </div>
 
                 <div class="flex gap-2">
-                    <p class="light bg-gray-100 px-4 py-1 rounded">Remote</p>
+                    <p class="light bg-gray-100 px-4 py-1 rounded">Austin, TX</p>
                     <p class="water bg-gray-100 px-4 py-1 rounded">Full-Time</p>
+                    <p class="hill bg-gray-100 px-4 py-1 rounded"> $125,000 - $165,000</p>
                 </div>
 
                 <p class="status text-gray-500">Not Applied</p>
-                <p class="notes text-gray-400">Applied via LinkedIn</p>
+                <p class="notes text-gray-400">Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.</p>
 
                 <div class="flex gap-4">
                     <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Interview</button>
@@ -212,26 +214,27 @@
                 </div>
             </div>
 
-            <div>
+            <div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
             </div>
         </div>
 
                 <!-- CARD 6 -->
-        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition" data-id = "6">
+        <div class="card flex flex-col md:flex-row justify-between bg-white shadow p-6 md:p-8 rounded-xl hover:shadow-lg transition" data-id = "6">
             <div class="space-y-4">
                 <div>
-                    <p class="plantName text-2xl font-semibold">Frontend Developer</p>
-                    <p class="latinName text-gray-500">Company A</p>
+                    <p class="plantName text-2xl font-semibold">MegaCorp Solutions</p>
+                    <p class="latinName text-gray-500">JavaScript Developer</p>
                 </div>
 
                 <div class="flex gap-2">
-                    <p class="light bg-gray-100 px-4 py-1 rounded">Remote</p>
+                    <p class="light bg-gray-100 px-4 py-1 rounded">New York, NY</p>
                     <p class="water bg-gray-100 px-4 py-1 rounded">Full-Time</p>
+                    <p class="hill bg-gray-100 px-4 py-1 rounded"> $125,000 - $165,000</p>
                 </div>
 
                 <p class="status text-gray-500">Not Applied</p>
-                <p class="notes text-gray-400">Applied via LinkedIn</p>
+                <p class="notes text-gray-400">Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
 
                 <div class="flex gap-4">
                     <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Interview</button>
@@ -239,26 +242,27 @@
                 </div>
             </div>
 
-            <div>
+            <div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
             </div>
         </div>
 
                 <!-- CARD 7 -->
-        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition" data-id = "7">
+        <div class="card flex flex-col md:flex-row justify-between bg-white shadow p-6 md:p-8 rounded-xl hover:shadow-lg transition" data-id = "7">
             <div class="space-y-4">
                 <div>
-                    <p class="plantName text-2xl font-semibold">Frontend Developer</p>
-                    <p class="latinName text-gray-500">Company A</p>
+                    <p class="plantName text-2xl font-semibold">StartupXYZ</p>
+                    <p class="latinName text-gray-500">Full Stack Engineer</p>
                 </div>
 
                 <div class="flex gap-2">
                     <p class="light bg-gray-100 px-4 py-1 rounded">Remote</p>
                     <p class="water bg-gray-100 px-4 py-1 rounded">Full-Time</p>
+                    <p class="hill bg-gray-100 px-4 py-1 rounded"> $125,000 - $165,000</p>
                 </div>
 
                 <p class="status text-gray-500">Not Applied</p>
-                <p class="notes text-gray-400">Applied via LinkedIn</p>
+                <p class="notes text-gray-400">Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.</p>
 
                 <div class="flex gap-4">
                     <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Interview</button>
@@ -266,26 +270,27 @@
                 </div>
             </div>
 
-            <div>
+            <div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
             </div>
         </div>
 
                 <!-- CARD 8 -->
-        <div class="card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition" data-id = "8">
+        <div class="card flex flex-col md:flex-row justify-between bg-white shadow p-6 md:p-8 rounded-xl hover:shadow-lg transition" data-id = "8">
             <div class="space-y-4">
                 <div>
-                    <p class="plantName text-2xl font-semibold">Frontend Developer</p>
+                    <p class="plantName text-2xl font-semibold">Senior Frontend Developer</p>
                     <p class="latinName text-gray-500">Company A</p>
                 </div>
 
                 <div class="flex gap-2">
-                    <p class="light bg-gray-100 px-4 py-1 rounded">Remote</p>
+                <p class="light bg-gray-100 px-4 py-1 rounded">San Francisco,CA</p>
                     <p class="water bg-gray-100 px-4 py-1 rounded">Full-Time</p>
+                    <p class="hill bg-gray-100 px-4 py-1 rounded"> $125,000 - $165,000</p>
                 </div>
 
                 <p class="status text-gray-500">Not Applied</p>
-                <p class="notes text-gray-400">Applied via LinkedIn</p>
+                <p class="notes text-gray-400">We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.</p>
 
                 <div class="flex gap-4">
                     <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">Interview</button>
@@ -293,7 +298,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">Delete</button>
             </div>
         </div>
@@ -305,4 +310,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
