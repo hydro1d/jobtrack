@@ -22,10 +22,10 @@ function calculateCount() {
     // 🔥 RIGHT SIDE DYNAMIC COUNT
     if (currentStatus === "all-filter-btn") {
         filterCount.innerText = `${totalCards} jobs`;
-    } 
+    }
     else if (currentStatus === "thriving-filter-btn") {
         filterCount.innerText = `${thrivingList.length} jobs`;
-    } 
+    }
     else if (currentStatus === "struggling-filter-btn") {
         filterCount.innerText = `${strugglingList.length} jobs`;
     }
@@ -76,9 +76,11 @@ mainContainer.addEventListener("click", function (event) {
 
     const id = card.dataset.id; // 🔥 UNIQUE ID
     const plantName = card.querySelector(".plantName").innerText;
+    const latinName = card.querySelector(".latinName").innerText;
     const light = card.querySelector(".light").innerText;
     const water = card.querySelector(".water").innerText;
     const notes = card.querySelector(".notes").innerText;
+    const hill = card.querySelector(".hill").innerText;
     const statusElement = card.querySelector(".status");
 
     // INTERVIEW
@@ -87,7 +89,7 @@ mainContainer.addEventListener("click", function (event) {
         statusElement.innerText = "Interview";
         statusElement.className = "status text-green-600 font-semibold";
 
-        const cardInfo = { id, plantName, light, water, notes, status: "Interview" };
+        const cardInfo = { id, plantName, latinName, light, water, hill, notes, status: "Interview" };
 
         if (!thrivingList.find(item => item.id === id)) {
             thrivingList.push(cardInfo);
@@ -106,7 +108,7 @@ mainContainer.addEventListener("click", function (event) {
         statusElement.innerText = "Rejected";
         statusElement.className = "status text-red-600 font-semibold";
 
-        const cardInfo = { id, plantName, light, water, notes, status: "Rejected" };
+        const cardInfo = { id, plantName, latinName, light, water, hill, notes, status: "Rejected" };
 
         if (!strugglingList.find(item => item.id === id)) {
             strugglingList.push(cardInfo);
@@ -149,6 +151,9 @@ function renderList(list) {
         emptyDiv.className = "bg-white shadow rounded-xl p-10 text-center";
 
         emptyDiv.innerHTML = `
+            <div class="flex justify-center"> 
+                    <img src="images/assignment_7959593 1.png" alt=""> </div>
+                </div>
             <p class="text-2xl font-semibold text-gray-500">
                 No Applications Found
             </p>
@@ -165,44 +170,42 @@ function renderList(list) {
 
         const div = document.createElement("div");
 
-        div.className = "card flex justify-between bg-white shadow p-8 rounded-xl";
+        div.className = "card flex justify-between bg-white shadow p-8 rounded-xl hover:shadow-lg transition";
         div.setAttribute("data-id", item.id); // ID add
 
         div.innerHTML = `
             <div class="space-y-4">
                 <div>
                     <p class="plantName text-2xl font-semibold">${item.plantName}</p>
-                    <p class="latinName text-gray-500">Company</p>
+                    <p class="latinName text-gray-500">${item.latinName}</p>
                 </div>
 
                 <div class="flex gap-2">
                     <p class="light bg-gray-100 px-4 py-1 rounded">${item.light}</p>
                     <p class="water bg-gray-100 px-4 py-1 rounded">${item.water}</p>
+                    <p class="hill bg-gray-100 px-4 py-1 rounded">${item.hill}</p>
                 </div>
 
-                <p class="status ${
-                    item.status === "Interview"
-                        ? "text-green-600 font-semibold"
-                        : "text-red-600 font-semibold"
-                }">
+                <p class="status ${item.status === "Interview"
+                ? "text-green-600 font-semibold"
+                : "text-red-600 font-semibold"
+            }">
                     ${item.status}
                 </p>
 
                 <p class="notes text-gray-400">${item.notes}</p>
 
                 <div class="flex gap-4">
-                    <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md">
+                    <button class="thriving-btn bg-green-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">
                         Interview
                     </button>
-                    <button class="struggling-btn bg-red-500 text-white px-4 py-2 rounded-md">
+                    <button class="struggling-btn bg-red-500 text-white px-4 py-2 rounded-md hover:opacity-80 transition">
                         Rejected
                     </button>
-                </div>
             </div>
-
             <div>
                 <button class="btn-delete bg-red-100 text-red-600 px-4 py-2 rounded-md hover:bg-red-200 transition">
-                    Delete
+                Delete
                 </button>
             </div>
         `;
