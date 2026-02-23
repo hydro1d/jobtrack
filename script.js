@@ -19,7 +19,7 @@ function calculateCount() {
     interviewCountEl.innerText = interviewList.length;
     rejectedCountEl.innerText = rejectedList.length;
 
-    // 🔥 RIGHT SIDE DYNAMIC COUNT
+    //  RIGHT SIDE DYNAMIC COUNT
     if (activeFilterId === "all-filter-btn") {
         filterCountEl.innerText = `${totalCards} jobs`;
     }
